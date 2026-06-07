@@ -12,6 +12,7 @@ include_directories(src)
 set(SOURCES 
     src/main.cpp 
     src/stabil_matching/gale_shapley.cpp
+    src/graphs/bfs.cpp
 )
 
 # Skapa den körbara filen

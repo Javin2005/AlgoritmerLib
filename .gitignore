@@ -76,6 +76,7 @@ lib/
 
 # --- Data (ignorera stora genererade filer) ---
 data/**/large_*.txt
+data/**/large_*.txt
 # Om du vill ignorera all data utom små testfiler:
 # data/
 
