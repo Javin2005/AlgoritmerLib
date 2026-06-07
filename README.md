@@ -43,11 +43,12 @@ Projektet använder CMake för att hantera byggprocessen.
 - [x] **DFS (Depth-First Search):** Utforska grafer på djupet.
 - [ ] **Tarjans algoritm:** Hitta starkt sammankopplade komponenter.
 
-### Dynamisk Programmering (Kommande)
+### Dynamisk Programmering 
 - [ ] Knapsack Problem
 - [ ] Sequence Alignment
 - [ ] Bellman-Ford
-
+### Greedy Algorythm
+- [x] Interval Scheduling
 *(Fyll på listan allt eftersom vi bygger dem!)*
 
 ## Benchmarking
