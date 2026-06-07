@@ -2,20 +2,14 @@
 #include "stabil_matching/gale_shapley.hpp"
 #include "graphs/bfs.hpp"
 #include "graphs/dfs.hpp"
+#include "greedy/interval_scheduling.hpp"
 #include "utils/generate_data.hpp"
 #include <chrono>
 
 #include <fstream>
 using namespace std;
 
-struct Interval
-{
-    int start;
-    int end;
-    int id;
-};
-
-bool loadIntervalData(string filename, int &n, vector<Interval> &intervals)
+bool loadIntervalData(string filename, int &n, vector<Greedy::Interval> &intervals)
 {
     ifstream file(filename);
     if (!file.is_open())
@@ -203,18 +197,34 @@ int main()
 
     if (choice == 4)
     {
-        cout << "Hur många intervall: ";
+        cout << "Hur många intervall ska genereras: ";
         int n_intervals;
         cin >> n_intervals;
 
         string path = "../data/greedy/large_intervals_test.txt";
-        generateIntervalData(n_intervals, 100, path);
+        generateIntervalData(n_intervals, 1000000, path);
 
         int n;
-        vector<Interval> intervals;
+        vector<Greedy::Interval> intervals;
         if (loadIntervalData(path, n, intervals))
         {
-            cout << "Intervall inlästa!" << endl;
+            cout << "Intervall inlästa! Kör greedy Scheduling..." << endl;
+
+            auto start = chrono::high_resolution_clock::now();
+
+            auto res = Greedy::solveIntervalScheduling(intervals);
+
+            auto end = chrono::high_resolution_clock::now();
+            chrono::duration<double, milli> duration = end - start;
+
+            cout << "Algoritm klar! Lyckades schemalägga " << res.size() << " av " << n << " intervall." << endl;
+            cout << "Tid: " << duration.count() << " ms" << endl;
+
+            cout << "De första valda intervallen:" << endl;
+            for (int i = 0; i < min((int)res.size(), 5); i++)
+            {
+                cout << "  Intervall [" << res[i].start << " -> " << res[i].end << "]" << endl;
+            }
         }
     }
     return 0;
