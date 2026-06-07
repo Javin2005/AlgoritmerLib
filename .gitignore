@@ -67,3 +67,28 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+
+# --- Projekt-specifika mappar ---
+bin/
+build/
+lib/
+
+# --- Data (ignorera stora genererade filer) ---
+data/**/large_*.txt
+# Om du vill ignorera all data utom små testfiler:
+# data/
+
+# --- IDE (VS Code) ---
+.vscode/
+.history/
+
+# --- macOS ---
+.DS_Store
+
+# --- (Här fortsätter din gamla gitignore...) ---
+# Prerequisites
+*.d
+# Compiled Object files
+*.o
+...
