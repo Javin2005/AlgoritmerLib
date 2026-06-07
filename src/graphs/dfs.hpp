@@ -8,7 +8,7 @@ namespace Graphs
     struct DFSResult
     {
         std::vector<int> traversalOrder;
-        std::vector<int> distance;
+        std::vector<bool> visited;
     };
 
     DFSResult solveDFS(int startNode, const std::vector<std::vector<int>> &adj);

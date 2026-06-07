@@ -1,6 +1,7 @@
 #include <iostream>
 #include "stabil_matching/gale_shapley.hpp"
 #include "graphs/bfs.hpp"
+#include "graphs/dfs.hpp"
 #include "utils/generate_data.hpp"
 #include <chrono>
 
@@ -155,15 +156,22 @@ int main()
         vector<vector<int>> adj;
         if (loadGraphData(path, n, adj))
         {
-            cout << "Graf inläst! Redo att köra BFS." << endl;
+            cout << "Graf inläst! Redo att köra DFS." << endl;
 
             auto start = chrono::high_resolution_clock::now();
+
+            auto res = Graphs::solveDFS(0, adj);
 
             auto end = chrono::high_resolution_clock::now();
             chrono::duration<double, milli> duration = end - start;
 
             cout << "DFS klar på " << duration.count() << " ms" << endl;
             cout << "Besöksordning (första 10): ";
+            for (int i = 0; i < min((int)res.traversalOrder.size(), 10); i++)
+            {
+                cout << res.traversalOrder[i] << " ";
+            }
+            cout << endl;
         }
     }
 
