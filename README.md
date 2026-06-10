@@ -43,7 +43,7 @@ The project utilizes a modular structure for easy expansion:
 
 ### Divide and Conquer
 - [x] **Mergesort:** Efficient $O(n \log n)$ sorting.
-- [ ] **Closest Pair of Points:** Finding the two closest points in a plane.
+- [x] **Closest Pair of Points:** Finding the two closest points in a plane.
 - [ ] **Jarvis March / Graham Scan:** Convex hull calculation.
 - [ ] **Preparata-Hong:** Advanced D&C for convex hulls.
 
@@ -67,11 +67,11 @@ The project utilizes a modular structure for easy expansion:
 ---
 
 ## Installation & Execution
-1. **Build the project:**
+1. **Build the project:** {cm:2026-06-10}
    ```bash
-   mkdir build && cd build
-   cmake ..
-   make
+   mkdir build && cd build {cm:2026-06-10}
+   cmake .. {cm:2026-06-10}
+   make {cm:2026-06-10}
    ```
 2. **Run the laboratory:**
    ```bash

@@ -8,5 +8,6 @@ void runIntervalScheduling();
 void runDijkstras();
 void runKruskals();
 void runMergeSort();
+void runClosestPoints();
 
 #endif

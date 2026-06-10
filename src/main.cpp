@@ -1,59 +1,67 @@
 #include <iostream>
+#include <vector>
+#include <string>
+#include <iomanip>
+#include <limits>
 #include "runner/run_algorithm.hpp"
 
 using namespace std;
 
+struct AlgorithmEntry
+{
+    string name;
+    void (*function)();
+};
+
 int main()
 {
+    const vector<AlgorithmEntry> algorithms = {
+        {"Gale-Shapley (Stable Matching)", runGaleShapley},
+        {"BFS (Breadth-First Search)", runBFS},
+        {"DFS (Depth-First Search)", runDFS},
+        {"Interval Scheduling (Greedy)", runIntervalScheduling},
+        {"Dijkstras (Shortest Path)", runDijkstras},
+        {"Kruskals (MST)", runKruskals},
+        {"MergeSort (Divide and Conquer)", runMergeSort},
+        {"Closest Points (Divide and Conquer)", runClosestPoints}};
+
     while (true)
     {
-        cout << "\n--- Algorithm Laboratory ---" << endl;
-        cout << "1. Gale-Shapley (Stable Matching)" << endl;
-        cout << "2. BFS (Breadth-First Search)" << endl;
-        cout << "3. DFS (Depth-First Search)" << endl;
-        cout << "4. Interval Scheduling (Greedy)" << endl;
-        cout << "5. Dijkstras (Shortest Path)" << endl;
-        cout << "6. Kruskals (MST)" << endl;
-        cout << "7. MergeSort (Divide and Conquer)" << endl;
-        cout << "0. Exit" << endl;
-        cout << "Choose an algorithm: ";
+        cout << "\n"
+             << string(45, '=') << endl;
+        cout << "    ALGORITHM LABORATORY COMMAND CENTER" << endl;
+        cout << string(45, '=') << endl;
+
+        for (size_t i = 0; i < algorithms.size(); ++i)
+        {
+            cout << "  " << setw(2) << i + 1 << ". " << algorithms[i].name << endl;
+        }
+
+        cout << "   0. Exit" << endl;
+        cout << string(45, '-') << endl;
+        cout << "  Select [0-" << algorithms.size() << "]: ";
 
         int choice;
         if (!(cin >> choice))
-            break;
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+
         if (choice == 0)
             break;
 
-        switch (choice)
+        if (choice >= 1 && choice <= static_cast<int>(algorithms.size()))
         {
-        case 1:
-            runGaleShapley();
-            break;
-        case 2:
-            runBFS();
-            break;
-        case 3:
-            runDFS();
-            break;
-        case 4:
-            runIntervalScheduling();
-            break;
-        case 5:
-            runDijkstras();
-            break;
-
-        case 6:
-            runKruskals();
-            break;
-        case 7:
-            runMergeSort();
-            break;
-        default:
-            cout << "Invalid choice, try again." << endl;
-            break;
+            algorithms[choice - 1].function();
+        }
+        else
+        {
+            cout << "\n  [!] Invalid selection. Please try again." << endl;
         }
     }
 
-    cout << "Goodbye!" << endl;
+    cout << "\n  Exiting laboratory. Goodbye!" << endl;
     return 0;
 }
